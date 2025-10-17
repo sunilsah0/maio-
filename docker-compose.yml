@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   diabetes-api:
-    image: ghcr.io/sunilsah0/maio-:v0.1
+    image: ghcr.io/sunilsah0/maio:v0.1
     ports:
       - "8080:8080"
     environment:

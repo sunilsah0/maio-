@@ -12,7 +12,8 @@ jobs:
       contents: write
       packages: write
     env:
-      IMAGE_NAME: ghcr.io/${{ github.repository }}
+      # Use a sanitized image repo name (repo name ends with '-' which is invalid for Docker)
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/maio
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -53,7 +54,13 @@ jobs:
       - name: Read metrics
         id: metrics
         run: |
-          echo "rmse=$(jq -r .rmse model/metrics.json)" >> $GITHUB_OUTPUT
+          python - <<'PY'
+import json, os
+with open('model/metrics.json','r') as f:
+    m=json.load(f)
+print(f"rmse={m.get('rmse','')}")
+PY
+          | tee -a $GITHUB_OUTPUT
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
