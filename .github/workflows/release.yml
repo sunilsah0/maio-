@@ -66,13 +66,7 @@ PY
         with:
           name: ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
-          body: |
-            Automated release for ${{ github.ref_name }}
-            
-            ## Metrics
-            - RMSE: ${{ steps.metrics.outputs.rmse }}
-
-            See CHANGELOG.md for details.
+          body: "Automated release for ${{ github.ref_name }}\n\n## Metrics\n- RMSE: ${{ steps.metrics.outputs.rmse }}\n\nSee CHANGELOG.md for details."
           files: |
             model/metrics.json
             model/model.joblib
