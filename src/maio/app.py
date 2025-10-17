@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import os
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import JSONResponse
-import numpy as np
 
-from .schemas import PredictRequest, PredictResponse, HealthResponse, FEATURE_NAMES
-from .model_io import load_pipeline, load_feature_names, load_metrics
+import numpy as np
+from fastapi import FastAPI, HTTPException
+
 from . import __version__
+from .model_io import load_feature_names, load_metrics, load_pipeline
+from .schemas import FEATURE_NAMES, HealthResponse, PredictRequest, PredictResponse
 
 
 def get_model_dir() -> str:

@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+
 from fastapi.testclient import TestClient
 
 from maio.app import create_app
-from maio.train import TrainConfig, train_and_evaluate
 from maio.model_io import save_artifacts
+from maio.train import TrainConfig, train_and_evaluate
 
 
 def _ensure_test_model(tmpdir: Path) -> None:

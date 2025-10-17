@@ -1,12 +1,15 @@
 from __future__ import annotations
 
-from pathlib import Path
 import json
-from typing import Any, Dict
+from pathlib import Path
+from typing import Any
+
 import joblib
 
 
-def save_artifacts(pipeline: Any, metrics: Dict[str, Any], feature_names: list[str], out_dir: str | Path) -> None:
+def save_artifacts(
+	pipeline: Any, metrics: dict[str, Any], feature_names: list[str], out_dir: str | Path
+) -> None:
 	out = Path(out_dir)
 	out.mkdir(parents=True, exist_ok=True)
 	joblib.dump(pipeline, out / "model.joblib")
@@ -28,7 +31,7 @@ def load_feature_names(model_dir: str | Path) -> list[str]:
 	return json.loads(path.read_text())
 
 
-def load_metrics(model_dir: str | Path) -> Dict[str, Any]:
+def load_metrics(model_dir: str | Path) -> dict[str, Any]:
 	path = Path(model_dir) / "metrics.json"
 	if not path.exists():
 		return {}

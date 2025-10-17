@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 from pydantic import BaseModel, Field
-from typing import Dict
-
 
 FEATURE_NAMES = [
 	"age",
@@ -44,5 +42,5 @@ class HealthResponse(BaseModel):
 
 
 class ErrorResponse(BaseModel):
-	detail: str | Dict[str, str]
+	detail: str | dict[str, str]
 

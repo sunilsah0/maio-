@@ -3,15 +3,15 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Tuple, Dict, Any
+from typing import Any
 
 import numpy as np
 from sklearn.datasets import load_diabetes
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
 
 from .model_io import save_artifacts
 
@@ -33,9 +33,8 @@ def build_pipeline() -> Pipeline:
 	)
 
 
-def train_and_evaluate(cfg: TrainConfig) -> Tuple[Pipeline, Dict[str, Any], list[str]]:
+def train_and_evaluate(cfg: TrainConfig) -> tuple[Pipeline, dict[str, Any], list[str]]:
 	# Reproducibility
-	rng = np.random.RandomState(cfg.random_state)
 	np.random.seed(cfg.random_state)
 
 	Xy = load_diabetes(as_frame=True)
