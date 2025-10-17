@@ -68,8 +68,8 @@ PY
           tag_name: ${{ github.ref_name }}
           body: |
             Automated release for ${{ github.ref_name }}
-
-            Metrics:
+            
+            ## Metrics
             - RMSE: ${{ steps.metrics.outputs.rmse }}
 
             See CHANGELOG.md for details.
