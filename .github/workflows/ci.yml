@@ -16,17 +16,19 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install .[dev]
+          pip install -e .
+          pip install pytest httpx ruff
           pip show scikit-learn fastapi uvicorn pandas numpy joblib pydantic
+      - name: Training smoke (v0.1)
+        run: |
+          mkdir -p model
+          python -m maio.train --version 0.1.0 --random-state 42 --test-size 0.2 --out-dir model
       - name: Lint
         run: |
           ruff check .
       - name: Unit tests
         run: |
           pytest -q
-      - name: Training smoke (v0.1)
-        run: |
-          python -m maio.train --version 0.1.0 --random-state 42 --test-size 0.2 --out-dir model
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
