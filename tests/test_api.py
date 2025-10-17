@@ -12,7 +12,7 @@ from maio.train import TrainConfig, train_and_evaluate
 
 def _ensure_test_model(tmpdir: Path) -> None:
 	pipeline, metrics, feature_names = train_and_evaluate(
-		TrainConfig(version="0.1.0", random_state=42, test_size=0.2, out_dir=tmpdir)
+		TrainConfig(version="0.1.0", random_state=42, test_size=0.2, out_dir=tmpdir, model="linear")
 	)
 	save_artifacts(pipeline, metrics, feature_names, tmpdir)
 
