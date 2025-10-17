@@ -54,13 +54,13 @@ jobs:
       - name: Read metrics
         id: metrics
         run: |
-          python - <<'PY'
-import json, os
+          python - <<'PY' > rmse.txt
+import json
 with open('model/metrics.json','r') as f:
     m=json.load(f)
-print(f"rmse={m.get('rmse','')}")
+print(m.get('rmse',''))
 PY
-          | tee -a $GITHUB_OUTPUT
+          echo "rmse=$(cat rmse.txt)" >> $GITHUB_OUTPUT
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
