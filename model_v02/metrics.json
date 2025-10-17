@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "random_state": 42,
+  "test_size": 0.2,
+  "rmse": 53.77745406534389,
+  "model": "ridge"
+}

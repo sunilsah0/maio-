@@ -47,9 +47,13 @@ ruff check .
 
 ## Train models
 ```bash
+# v0.1 (baseline)
 python -m maio.train --version 0.1.0 --random-state 42 --test-size 0.2 --out-dir model
+
+# v0.2 (improvements, auto-picks best of linear/ridge/rf)
+python -m maio.train --version 0.2.0 --random-state 42 --test-size 0.2 --out-dir model_v02 --model auto
 ```
-Artifacts (pipeline, metrics, feature names) are saved under `model/`.
+Artifacts (pipeline, metrics, feature names) are saved under `model/` or the specified output directory.
 
 ## CI/CD
 - On PR/push: lint, tests, training smoke, upload artifacts.
